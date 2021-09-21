@@ -73,6 +73,23 @@ $(document).ready(function(){
 		return false;
 	})
 
+
+    //file input 
+    $('.js-field-file .js-file-button').on('click', function () {
+        $(this).parents('.js-field-file').find('input').click();
+        return false;
+    })
+    /*$('input[type=file]').on('change', function () {
+        var fileName = ('' + $(this).val()).replace(/^.*[\ \/]/, '');
+        if (fileName.length > 15) {
+            fileName = fileName.substring(0, 15) + '...';
+        }
+        if (fileName == "") {
+            fileName = "Выбрать файл"
+        }
+        $('.js-field-file .js-file-button').html(fileName);
+    });*/
+
 	//tabs
 	$('.js-tabs-nav').each(function() {
 		$('.js-tab-block[data-tab*="'+$(this).find('.active').attr('data-tab')+'"]').addClass('active');
@@ -100,7 +117,31 @@ $(document).ready(function(){
 			$(this).addClass('active').next('.js-tab-content').slideDown(200);
 		}
 	})
-	
+
+
+    //main-slider-box
+    $('.main-slider-box .slider').slick({
+        dots: false,
+        slidesToShow: 1,
+        variableWidth: false,
+        infinite: true,
+        prevArrow: '<span class="btn-action-ico ico-arrow ico-arrow-prev button-light"></span>',
+        nextArrow: '<span class="btn-action-ico ico-arrow ico-arrow-next button-light"></span>',
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    dots: true,
+                    prevArrow: false,
+                    nextArrow: false,
+                }
+            },
+        ]
+    });
+    $('.main-slider-box .slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+        $('.main-slider-box .slider-counter .sl-dot').removeClass('active');
+        $('.main-slider-box .slider-counter .sl-dot[data-slide="'+currentSlide+'"]').addClass('active');
+    });
 });
 
 

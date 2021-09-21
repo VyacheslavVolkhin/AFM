@@ -1,9 +1,10 @@
 :root {
 	--clr-base: #000;
-	--clr-att: #f00;
+	--clr-att: #85b233;
+    --clr-light: #979797;
 
 	--min: 320px;
-	--max: 1200px;
+	--max: 1500px;
 
 	font-size: 10px;
 }
@@ -19,9 +20,12 @@
 body {
 	color: var(--clr-base, #000);
 	background: #fff;
+    font-size: 20px;
+    line-height: 20/14;
 }
 p, ul, ol {
 	position: relative;
+    margin-bottom: 20/14em;
 	img {
 		max-width: 100%;
 	}
@@ -35,10 +39,10 @@ li {
 }
 a {
 	text-decoration: none;
-	color: var(--clr-att, #f00);
+	color: var(--clr-att, #85b233);
 	&:hover {
 		text-decoration: none;
-		color: var(--clr-att, #f00);
+		color: var(--clr-att, #85b233);
 	}
 }
 a.link-main, .link-main {
@@ -48,6 +52,7 @@ a.link-main, .link-main {
 		border-bottom: none;
 	}
 }
+.page-subtitle,
 h1, .h1-title,
 h2, .h2-title,
 h3, .h3-title,
@@ -56,7 +61,111 @@ h5, .h5-title,
 h6, .h6-title {
 	display: block;
 	position: relative;
+    font-weight: bold;
+    line-height: 60/45;
+    margin: 1em 0 1em 0;
     &:first-child {
         margin-top: 0;
+    }
+}
+.page-subtitle {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #c3c5d4;
+    .lse(50);
+}
+h1, .h1-title {
+    font-size: 50/20em;
+}
+h2, .h2-title {
+    font-size: 35/20em;
+    &.title-small {
+        font-size: 30/20em;
+    }
+}
+h3, .h3-title {
+    font-size: 1em;
+    line-height: 28/20;
+    &.title-large {
+        font-size: 25/20em;
+    }
+    &.title-small {
+        font-size: 18/20em;
+    }
+}
+li {
+    padding-left: 22px;
+    position: relative;
+    &:before {
+        content: "";
+        display: block;
+        width: 7px;
+        height: 7px;
+        background: #0089d2;
+        position: absolute;
+        top: 0.7em;
+        left: 0;
+        margin-top: -3px;
+        border-radius: 50%;
+    }
+}
+ol {
+    counter-reset: li; 
+    list-style: none;
+    li {
+    	position: relative;
+        padding-left: 32px;
+    	&:before {
+    		content: '0' counter(li) '.'; 
+			counter-increment: li; 
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: auto;
+            height: auto;
+            margin: 0;
+            background: none;
+            border-radius: 0;
+    	}
+    }
+}
+.title-decor {
+    &:before {
+        content: "";
+        display: block;
+        width: 1em;
+        height: 3px;
+        background: #000;
+        position: absolute;
+        top: 0.65em;
+        left: -1.9em;
+        margin-top: 2px;
+    }
+}
+@media (max-width: 1199px) {
+    body {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1023px) {
+    body {
+        font-size: 14px;
+    }
+    h3, .h3-title {
+        &.title-small {
+            font-size: 1em;
+        }
+    }
+    .page-subtitle {
+        font-size: 14px;
+    }
+}
+@media (max-width: 639px) {
+    .title-decor {
+        &:before {
+            display: none;
+        }
     }
 }
